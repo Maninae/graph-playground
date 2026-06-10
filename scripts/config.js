@@ -14,9 +14,10 @@ export const C = {
 // f is the parent function; expr(inner) renders the equation body around
 // the (x − h) chip markup; label is the kid-facing picker name.
 export const SHAPES = {
-  line:  { label: 'Line',    f: x => x,                          expr: i => `(${i})` },
-  quad:  { label: 'U-curve', f: x => x * x,                      expr: i => `(${i})²` },
-  cubic: { label: 'S-curve', f: x => (x * x * x) / 12,           expr: i => `(${i})³⁄₁₂` },
-  abs:   { label: 'V-shape', f: x => Math.abs(x),                expr: i => `|${i}|` },
-  wave:  { label: 'Wave',    f: x => 2.5 * Math.sin(1.25 * x),   expr: i => `wave(${i})` },
+  line:  { label: 'Line',           f: x => x,                        expr: i => `(${i})` },
+  quad:  { label: 'Parabola',       f: x => x * x,                    expr: i => `(${i})²` },
+  cubic: { label: 'Cubic',          f: x => (x * x * x) / 12,
+           expr: i => `<span class="frac"><span class="num">(${i})³</span><span class="den">12</span></span>` },
+  abs:   { label: 'Absolute value', f: x => Math.abs(x),              expr: i => `|${i}|` },
+  wave:  { label: 'Wave',           f: x => 2.5 * Math.sin(1.25 * x), expr: i => `wave(${i})` },
 };

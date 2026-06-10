@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Graph Playground — slide, stretch &amp; flip equations</title>
   <meta name="description" content="An interactive playground for feeling how graphs move. Change one number in an equation and watch the whole picture slide, stretch, or flip — then beat the boss level.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.85em%22 x=%2218%22 font-size=%2295%22 font-family=%22Georgia%22 font-style=%22italic%22 fill=%22%23d63c2e%22>ƒ</text></svg>">
   <meta property="og:title" content="Graph Playground">
-  <meta property="og:description" content="Slide it. Stretch it. Flip it. Feel how equations move their graphs.">
+  <meta property="og:description" content="Slide it. Stretch it. Flip it. An interactive companion for learning function transformations by doing.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/sections.css">
@@ -18,7 +18,7 @@
 <body>
 
 <header class="site-head">
-  <a class="brand" href="#top">📈 Graph Playground</a>
+  <a class="brand" href="#top"><span class="brand-glyph">ƒ</span> Graph Playground</a>
   <nav class="head-links">
     <a href="#playground">Playground</a>
     <a class="head-boss" href="#boss">Boss level</a>
@@ -29,7 +29,7 @@
 <section class="hero" id="top">
   <div class="hero-bg"><canvas aria-hidden="true"></canvas></div>
   <div class="hero-content">
-    <span class="eyebrow">learn by playing, not memorizing</span>
+    <span class="eyebrow">an interactive companion to algebra</span>
     <h1>Graph Playground</h1>
     <p class="hero-verbs">
       <span class="u-green">Slide it.</span>
@@ -37,12 +37,12 @@
       <span class="u-pink">Flip it.</span>
     </p>
     <p class="hero-sub">
-      Change one number in an equation and the whole picture moves.
-      An educational companion for learning by doing — turn the knobs,
-      watch the graph respond, and let the intuition build itself.
+      Change one number in a function and the whole graph moves. Learn
+      transformations by doing — turn the knobs, watch the graph respond,
+      and build the intuition that static textbook figures can't.
     </p>
     <a class="btn hero-cta" href="#machine">Start playing ↓</a>
-    <p class="hero-meta">3 knobs · 5 shapes · 6 boss rounds · zero formulas to memorize</p>
+    <p class="hero-meta">3 knobs · 5 shapes · 6 challenge rounds · every transformation on one page</p>
   </div>
 </section>
 
@@ -50,22 +50,23 @@
   <div class="step-head">
     <span class="step-num">1</span>
     <span class="eyebrow" style="--c: var(--red)">step one</span>
-    <h2>Meet the graph machine</h2>
+    <h2>A function is a machine</h2>
     <p class="lede">
-      An <button class="term" data-pop="equation">equation</button> like
-      <strong>y&nbsp;=&nbsp;x&hairsp;÷&hairsp;2&nbsp;+&nbsp;1</strong> is a little machine:
-      feed it a number (that's <strong class="c-blue">x</strong>), and it answers with a number
-      (that's <strong class="c-green">y</strong>). Each answer gets drawn as a dot at
+      A <button class="term" data-pop="function">function</button> like
+      <strong>y&nbsp;=&nbsp;<span class="frac"><span class="num">x</span><span class="den">2</span></span>&nbsp;+&nbsp;1</strong>
+      takes any input <strong class="c-blue">x</strong> and produces exactly one output
+      <strong class="c-green">y</strong>. Every run of the machine is plotted as a point at
       <button class="term" data-pop="coords">(x,&nbsp;y)</button>.
       Drag the slider and watch it work.
     </p>
   </div>
   <div id="w-machine"></div>
   <div class="callout insight">
-    <span class="callout-label">The one idea everything else builds on</span>
-    <p>A graph isn't the machine — it's the machine's <em>diary</em>. Hit
-    "feed it every number" and the dots melt into a line: every input the machine
-    ever met, with its answer, drawn as one picture.</p>
+    <span class="callout-label">where this is going</span>
+    <p>The graph is the complete record of the function: every input paired with its
+    output, plotted as one curve. Every move on this page is an edit to the machine —
+    change what comes <em>out</em> (the well-behaved knobs) or change what goes
+    <em>in</em> (the sneaky one).</p>
   </div>
 </section>
 
@@ -75,16 +76,17 @@
     <span class="eyebrow" style="--c: var(--green)">step two · the green knob</span>
     <h2>Slide it up &amp; down</h2>
     <p class="lede">
-      Mess with the number <em>at the end</em> and every answer grows or shrinks by
-      exactly that much. The line doesn't tilt, doesn't bend — it rides the elevator.
-      The arrows show every dot taking the same trip.
+      Change the constant <em>at the end</em> and it's applied after everything else:
+      every output rises or falls by exactly that much. The graph doesn't tilt or
+      bend — it <strong class="c-green">translates</strong> straight up or down.
+      The arrows track individual points making the trip.
     </p>
   </div>
   <div id="w-updown"></div>
   <div class="callout note">
-    <span class="callout-label">no tricks here</span>
-    <p>This knob behaves exactly how you'd guess: bigger number at the end, higher graph.
-    Enjoy it — the next knob is sneakier.</p>
+    <span class="callout-label">as expected</span>
+    <p>Outside the function, numbers do exactly what they say: +3 means up 3,
+    −3 means down 3. Savor it — the next knob isn't so polite.</p>
   </div>
 </section>
 
@@ -92,35 +94,36 @@
   <div class="step-head">
     <span class="step-num">3</span>
     <span class="eyebrow" style="--c: var(--blue)">step three · the blue knob</span>
-    <h2>Slide it sideways — the sneaky one</h2>
+    <h2>Slide it sideways — the backwards one</h2>
     <p class="lede">
-      Now we mess with <strong class="c-blue">x itself</strong>, before the machine gets it:
-      <strong>y&nbsp;=&nbsp;|x&nbsp;−&nbsp;3|&nbsp;−&nbsp;2</strong>.
-      Subtracting 3 slides the whole picture… <em>to the right?!</em> Almost everyone guesses left.
-      Here's the click: <strong>x&nbsp;−&nbsp;3 is a delay.</strong> The machine now treats every
-      input as 3 smaller than it really is, so whatever used to happen at 0 now happens at 3.
-      <button class="term" data-pop="whyright">Show me why</button>
+      Now edit <strong class="c-blue">what goes in</strong>, before the function ever
+      sees it: <strong>y&nbsp;=&nbsp;|x&nbsp;−&nbsp;3|&nbsp;−&nbsp;2</strong>.
+      Subtracting 3 shifts the whole graph… <em>to the right?!</em> Almost everyone
+      guesses left. Here's the click: <strong>x&nbsp;−&nbsp;3 is a delay.</strong>
+      The function receives every input as 3 smaller than it really is, so whatever
+      used to happen at 0 now happens at 3.
+      <button class="term" data-pop="whyright">Show me the algebra</button>
     </p>
   </div>
   <div id="w-sideways"></div>
   <div class="callout gotcha">
-    <span class="callout-label">opposite-day rule</span>
-    <p><strong>Inside the parentheses, everything is opposite-day.</strong>
-    Minus slides the graph <em>right</em>. Plus slides it <em>left</em>.
-    Outside (the green knob), things behave normally.</p>
+    <span class="callout-label">the inside rule</span>
+    <p><strong>Inside the parentheses, signs work backwards.</strong>
+    f(x&nbsp;−&nbsp;3) shifts <em>right</em>; f(x&nbsp;+&nbsp;3) shifts <em>left</em>.
+    Outside the function (the green knob), numbers behave as written.</p>
   </div>
 
-  <h3>Watch the copycat race</h3>
+  <h3>The copycat race</h3>
   <p class="lede" style="max-width: 700px; margin: 0 auto;">
-    Still feels like a trick? Two pens draw at the same time, left to right.
-    The blue pen copies the black pen's every move — three steps late.
+    Still feels like a trick? Two pens draw simultaneously, left to right.
+    The blue pen repeats the black pen's every move — three steps behind.
   </p>
   <div id="w-race"></div>
   <div class="callout note">
-    <span class="callout-label">why we used a V and not a line</span>
-    <p>Try sliding a plain line sideways and it looks like it just slid <em>down</em> —
-    a line has no corner to track, so both stories are true at once. The V's corner
-    makes the sideways move impossible to miss.</p>
+    <span class="callout-label">why a V and not a line</span>
+    <p>Slide a line sideways and the result looks identical to sliding it down —
+    a line has no landmark, so both descriptions are true at once. The vertex of
+    the V makes the horizontal shift unambiguous.</p>
   </div>
 </section>
 
@@ -128,12 +131,13 @@
   <div class="step-head">
     <span class="step-num">4</span>
     <span class="eyebrow" style="--c: var(--orange)">step four · the orange knob</span>
-    <h2>Stretch, squish &amp; flip</h2>
+    <h2>Stretch, compress &amp; flip</h2>
     <p class="lede">
-      The last knob <strong class="c-orange">multiplies every answer</strong>.
-      Crank it to 2 and every height doubles — the curve looks taller and skinnier.
-      Drop it to ½ and it flattens out, lazy and wide. Drag it below zero and every
-      answer flips sign: the whole graph does a somersault.
+      The coefficient out front <strong class="c-orange">multiplies every output</strong>.
+      At a&nbsp;=&nbsp;2, every height doubles — a vertical stretch that reads as
+      <em>narrower</em>. At a&nbsp;=&nbsp;0.5, heights halve — a compression that reads
+      as <em>wider</em>. Push it negative and every output changes sign: the parabola
+      reflects through the x-axis.
     </p>
   </div>
   <div id="w-stretch"></div>
@@ -143,13 +147,14 @@
   <div class="step-head">
     <span class="step-num">5</span>
     <span class="eyebrow" style="--c: var(--red)">step five · all three knobs</span>
-    <h2>Every shape obeys the same knobs</h2>
+    <h2>One formula moves every graph</h2>
     <p class="lede">
-      Lines, U-curves, S-curves, V-shapes, waves — every graph ever drawn follows the
-      same three knobs: <strong class="c-orange">orange stretches</strong>,
-      <strong class="c-blue">blue slides sideways</strong> (opposite-day!),
-      <strong class="c-green">green rides the elevator</strong>.
-      Pick a shape and go wild — or just grab the curve and drag it around.
+      <strong>y&nbsp;=&nbsp;a·f(x&nbsp;−&nbsp;h)&nbsp;+&nbsp;k.</strong> That's the whole
+      story — for lines, parabolas, cubics, absolute value, even the wave (a preview of
+      the sine function from trig). <strong class="c-orange">a stretches and flips</strong>,
+      <strong class="c-blue">h shifts sideways</strong> (backwards!),
+      <strong class="c-green">k shifts vertically</strong>.
+      Pick a shape — or grab the curve and drag it around.
     </p>
   </div>
   <div id="w-playground"></div>
@@ -160,13 +165,13 @@
         <tr><th>You write</th><th>The graph…</th><th>Watch out</th></tr>
       </thead>
       <tbody>
-        <tr><td>y = f(x) <span class="c-green">+ 3</span></td><td>slides <strong>up</strong> 3</td><td class="muted" rowspan="2">works exactly like you'd guess</td></tr>
-        <tr><td>y = f(x) <span class="c-green">− 3</span></td><td>slides <strong>down</strong> 3</td></tr>
-        <tr><td>y = f(x <span class="c-blue">− 3</span>)</td><td>slides <strong>right</strong> 3</td><td rowspan="2"><strong>opposite-day!</strong> inside the parentheses, minus → right, plus → left</td></tr>
-        <tr><td>y = f(x <span class="c-blue">+ 3</span>)</td><td>slides <strong>left</strong> 3</td></tr>
-        <tr><td>y = <span class="c-orange">2</span>·f(x)</td><td>twice as tall (looks skinnier)</td><td class="muted" rowspan="2">heights scale; points on the floor (y = 0) don't move</td></tr>
-        <tr><td>y = <span class="c-orange">½</span>·f(x)</td><td>half as tall (looks wider)</td></tr>
-        <tr><td>y = <span class="c-orange">−</span>f(x)</td><td><strong>flips</strong> upside-down</td><td class="muted">a stretch by −1: every answer changes sign</td></tr>
+        <tr><td>y = f(x) <span class="c-green">+ 3</span></td><td>translates <strong>up</strong> 3</td><td class="muted" rowspan="2">behaves as written</td></tr>
+        <tr><td>y = f(x) <span class="c-green">− 3</span></td><td>translates <strong>down</strong> 3</td></tr>
+        <tr><td>y = f(x <span class="c-blue">− 3</span>)</td><td>shifts <strong>right</strong> 3</td><td rowspan="2"><strong>backwards!</strong> inside the parentheses, − shifts right, + shifts left</td></tr>
+        <tr><td>y = f(x <span class="c-blue">+ 3</span>)</td><td>shifts <strong>left</strong> 3</td></tr>
+        <tr><td>y = <span class="c-orange">2</span>·f(x)</td><td>vertical stretch ×2 (reads narrower)</td><td class="muted" rowspan="2">heights scale; points on the x-axis don't move</td></tr>
+        <tr><td>y = <span class="c-orange"><span class="frac"><span class="num">1</span><span class="den">2</span></span></span>·f(x)</td><td>compression to half (reads wider)</td></tr>
+        <tr><td>y = <span class="c-orange">−</span>f(x)</td><td><strong>reflects</strong> through the x-axis</td><td class="muted">a stretch by −1: every output changes sign</td></tr>
       </tbody>
     </table>
   </div>
@@ -178,8 +183,9 @@
     <span class="eyebrow" style="--c: var(--orange)">boss level</span>
     <h2>Prove it: match the ghost</h2>
     <p class="lede">
-      A dashed ghost graph appears. Turn your knobs until your curve snaps onto it.
-      Six rounds, easy to fiendish. No formulas — just the feel you've already built.
+      A dashed target appears. Tune your knobs until your curve lands exactly on it.
+      Six rounds, from one knob to all three — no formulas to recall, just the feel
+      you've built.
     </p>
   </div>
   <div id="w-boss"></div>
@@ -195,26 +201,27 @@
 </footer>
 
 <!-- Deep-dive popup contents -->
-<template id="pop-equation">
-  <p><strong>An equation is a rule connecting two numbers.</strong>
-  "y = x ÷ 2 + 1" says: whatever x is, y must be half of it, plus 1.
-  Pick any x you like — the rule hands you the matching y. No exceptions, ever.
-  That reliability is what lets us draw it.</p>
-  <a href="https://en.wikipedia.org/wiki/Graph_of_a_function" target="_blank" rel="noopener">More: graph of a function →</a>
+<template id="pop-function">
+  <p><strong>A function is a rule that assigns each input exactly one output.</strong>
+  y = x/2 + 1 says: whatever x comes in, the output is half of it, plus 1.
+  Same input, same output, every single time — that reliability is what makes
+  a function drawable as a curve.</p>
+  <a href="https://en.wikipedia.org/wiki/Function_(mathematics)" target="_blank" rel="noopener">More: function (mathematics) →</a>
 </template>
 
 <template id="pop-coords">
-  <p><strong>(x, y) is an address.</strong> Start at the center of the graph (0, 0).
-  x tells you how far to walk right (or left, if negative); y tells you how far to
-  climb up (or down). The dot lives where you stop.</p>
+  <p><strong>(x, y) is an address.</strong> Start at the origin (0, 0).
+  x says how far right to go (negative means left); y says how far up
+  (negative means down). The point lives where you stop.</p>
   <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank" rel="noopener">More: coordinate system →</a>
 </template>
 
 <template id="pop-whyright">
-  <p><strong>Why does minus mean right?</strong> Ask the graph: "where do I get the
-  answer that x = 0 <em>used</em> to give?" You need the parentheses to equal 0,
-  so x − 3 = 0, which means x = 3. The answer that lived at 0 moved to 3 —
-  three steps right. Every other answer moved the same way.</p>
+  <p><strong>Why does minus mean right?</strong> Ask: where does the new graph
+  produce the output the old one made at x = 0? Set the inside to zero:
+  x − 3 = 0, so x = 3. The output that lived at 0 now lives at 3 — and the same
+  relocation happens to every point. In general, f(x − h) moves every output
+  h units to the right.</p>
   <a href="https://openstax.org/books/college-algebra-2e/pages/3-5-transformation-of-functions" target="_blank" rel="noopener">More: transformations of functions →</a>
 </template>
 

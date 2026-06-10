@@ -1,7 +1,8 @@
 # Graph Playground — agent onboarding
 
 Interactive single-page site teaching how graphs move when you tweak their
-equation (`y = a·f(x − h) + k`), aimed at kids and math-averse adults.
+equation (`y = a·f(x − h) + k`), pitched at ~8th grade (algebra and quadratics
+known) and math-averse adults.
 Live at https://maninae.github.io/graph-playground/ (GitHub Pages, repo
 `Maninae/graph-playground`, deploys from `main`, no build step).
 

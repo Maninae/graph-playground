@@ -1,26 +1,26 @@
 /* Design tokens, reset, page background, typography, callouts.
-   Aesthetic: a school notebook come alive — warm paper, faint graph-paper
-   grid, navy ink, crayon accents. Knob colors are load-bearing:
+   Aesthetic: an elevated lab notebook — warm paper, faint graph-paper
+   grid, navy ink, editorial serif display. Knob colors are load-bearing:
    green = up/down (k), blue = sideways (h), orange = stretch/flip (a). */
 
 :root {
-  --paper: #faf3e6;
-  --paper-2: #fffdf6;
+  --paper: #f7f3e9;
+  --paper-2: #fffdf8;
   --ink: #1f2b3e;
   --ink-soft: rgba(31, 43, 62, 0.68);
   --ink-faint: rgba(31, 43, 62, 0.42);
   --rule: rgba(31, 43, 62, 0.14);
-  --green: #1fa862;
-  --blue: #2e66e5;
-  --orange: #f08a12;
+  --green: #1a9159;
+  --blue: #2a5cd7;
+  --orange: #dd7e07;
   --pink: #e84c7d;
-  --red: #e8443a;
-  --gold: #f5b50a;
-  --display: 'Fredoka', sans-serif;
-  --body: 'Nunito', sans-serif;
+  --red: #d63c2e;
+  --gold: #e8a90c;
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Atkinson Hyperlegible', sans-serif;
   --mono: 'IBM Plex Mono', monospace;
-  --radius: 16px;
-  --card-shadow: 6px 7px 0 rgba(31, 43, 62, 0.1);
+  --radius: 10px;
+  --card-shadow: 4px 5px 0 rgba(31, 43, 62, 0.1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,10 +108,10 @@ a { color: var(--blue); }
 .callout.insight .callout-label { color: var(--green); }
 
 .callout.gotcha {
-  background: #fff1c2;
+  background: #fcf2d9;
   border: none;
-  box-shadow: var(--card-shadow);
-  transform: rotate(-0.5deg);
+  border-left: 4px solid var(--orange);
+  border-radius: 6px;
 }
 .callout.gotcha .callout-label { color: var(--orange); }
 
@@ -120,3 +120,15 @@ a { color: var(--blue); }
   color: var(--ink-soft);
 }
 .callout.note .callout-label { color: var(--ink-faint); }
+
+/* Stacked fractions, usable in prose and in the mono equation displays */
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1.15;
+  margin: 0 2px;
+}
+.frac .num, .frac .den { font-size: 0.78em; padding: 0 4px; }
+.frac .den { border-top: 1.8px solid currentColor; }

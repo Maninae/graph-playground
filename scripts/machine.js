@@ -17,16 +17,16 @@ export function buildMachine(mount) {
       <div class="graph-wrap"><canvas aria-label="graph of the machine's answers"></canvas></div>
       <div class="controls">
         <div class="ctrl-row" style="--c:${C.blue}">
-          <label class="ctrl-label" for="machine-x">feed it an x</label>
+          <label class="ctrl-label" for="machine-x">input x</label>
           <input type="range" id="machine-x" min="-8" max="8" step="0.25" value="3">
           <output class="ctrl-value">3</output>
         </div>
         <div class="ctrl-row ctrl-actions">
-          <button class="btn sweep-btn">✨ feed it every number</button>
+          <button class="btn sweep-btn">plot every input</button>
           <button class="btn ghost clear-btn">↺ start over</button>
         </div>
       </div>
-      <p class="machine-caption">Drag the slider. Every answer leaves a dot behind.</p>
+      <p class="machine-caption">Drag the slider — every run of the machine leaves a point behind.</p>
     </div>`);
   const root = mount.lastElementChild;
   const graph = new GraphCanvas(root.querySelector('canvas'), { xspan: 18 });
@@ -53,8 +53,8 @@ export function buildMachine(mount) {
     graph.point(x, y, { color: C.red, r: 7 });
     graph.label(`(${fmt(x)}, ${fmt(y)})`, x, y, { dy: -16, bg: true, color: C.ink });
     eqEl.innerHTML =
-      `y&nbsp;=&nbsp;<span class="echip" style="--c:${C.blue}">${fmt(x)}</span>&hairsp;÷&hairsp;2&nbsp;+&nbsp;1` +
-      `&nbsp;=&nbsp;<span class="echip" style="--c:${C.green}">${fmt(y)}</span>`;
+      `y&nbsp;=&nbsp;<span class="frac"><span class="num"><span class="echip" style="--c:${C.blue}">${fmt(x)}</span></span><span class="den">2</span></span>` +
+      `&nbsp;+&nbsp;1&nbsp;=&nbsp;<span class="echip" style="--c:${C.green}">${fmt(y)}</span>`;
     valueEl.textContent = fmt(x);
   }
 
@@ -70,7 +70,7 @@ export function buildMachine(mount) {
     const finish = () => {
       state.revealed = true;
       sweep = null;
-      caption.textContent = 'Every input the machine ever met, with its answer — the dots melt into the line. That line IS the equation, drawn.';
+      caption.textContent = 'Every input with its output, plotted at once — the points merge into a line. That line IS the function, drawn.';
       render();
     };
     if (REDUCED) {
@@ -96,7 +96,7 @@ export function buildMachine(mount) {
     state.revealed = false;
     state.x = 3;
     slider.value = 3;
-    caption.textContent = 'Drag the slider. Every answer leaves a dot behind.';
+    caption.textContent = 'Drag the slider — every run of the machine leaves a point behind.';
     render();
   });
 

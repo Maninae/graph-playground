@@ -45,9 +45,9 @@ buildMachine(document.querySelector('#w-machine'));
 buildWidget(document.querySelector('#w-updown'), {
   id: 'updown',
   graph: { xspan: 18 },
-  params: [{ key: 'c', label: 'slide up / down', color: C.green, min: -5, max: 5, step: 0.5, init: 1 }],
+  params: [{ key: 'c', label: 'shift up / down', color: C.green, min: -5, max: 5, step: 0.5, init: 1 }],
   fn: (ps, x) => x / 2 + ps.c,
-  eq: ps => `y = x&hairsp;÷&hairsp;2 ${signedChip(ps.c, C.green)}`,
+  eq: ps => `y = <span class="frac"><span class="num">x</span><span class="den">2</span></span> ${signedChip(ps.c, C.green)}`,
   ghost: { c: 1 },
   arrows: [-6, -3, 0, 3, 6],
   arrowColor: C.green,
@@ -59,7 +59,7 @@ buildWidget(document.querySelector('#w-updown'), {
 buildWidget(document.querySelector('#w-sideways'), {
   id: 'sideways',
   graph: { xspan: 18 },
-  params: [{ key: 'h', label: 'slide sideways', color: C.blue, min: -6, max: 6, step: 0.5, init: 3 }],
+  params: [{ key: 'h', label: 'shift sideways', color: C.blue, min: -6, max: 6, step: 0.5, init: 3 }],
   fn: (ps, x) => Math.abs(x - ps.h) - 2,
   eq: ps => `y = |&hairsp;${innerX(ps.h)}&hairsp;| − 2`,
   ghost: { h: 0 },
@@ -91,9 +91,9 @@ buildWidget(document.querySelector('#w-playground'), {
   graph: { xspan: 18 },
   shapes: Object.keys(SHAPES),
   params: [
-    { key: 'a', label: 'stretch / flip', color: C.orange, min: -3, max: 3, step: 0.25, init: 1 },
-    { key: 'h', label: 'slide sideways', color: C.blue, min: -6, max: 6, step: 0.5, init: 0 },
-    { key: 'k', label: 'slide up / down', color: C.green, min: -5, max: 5, step: 0.5, init: 0 },
+    { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.25, init: 1 },
+    { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.5, init: 0 },
+    { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.5, init: 0 },
   ],
   fn: (ps, x, shape) => ps.a * SHAPES[shape].f(x - ps.h) + ps.k,
   eq: (ps, shape) => eqGeneric(shape, ps),

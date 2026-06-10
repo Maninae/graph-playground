@@ -17,13 +17,13 @@ export function buildRace(mount) {
       <div class="graph-wrap"><canvas aria-label="two pens drawing the same curve, one delayed"></canvas></div>
       <div class="controls">
         <div class="ctrl-row ctrl-actions">
-          <button class="btn race-btn">🏁 run the race</button>
+          <button class="btn race-btn">▶ run the race</button>
         </div>
       </div>
       <p class="race-caption">
-        <strong style="color:${C.ink}">black pen</strong> draws y = wave(x).
-        <strong style="color:${C.blue}">blue pen</strong> draws y = wave(x&hairsp;<span class="echip" style="--c:${C.blue}">−&hairsp;3</span>):
-        the exact same dance, 3 steps late. A 3-step delay <em>is</em> a slide to the right.
+        The <strong style="color:${C.ink}">black pen</strong> draws y = wave(x).
+        The <strong style="color:${C.blue}">blue pen</strong> draws y = wave(x&hairsp;<span class="echip" style="--c:${C.blue}">−&hairsp;3</span>):
+        the same moves, three steps later. A 3-step delay <em>is</em> a 3-unit shift to the right.
       </p>
     </div>`);
   const root = mount.lastElementChild;
@@ -53,15 +53,15 @@ export function buildRace(mount) {
     graph.point(t, f(t), { color: C.ink, r: 7 });
     graph.point(t, g(t), { color: C.blue, r: 7 });
     if (!state.done) {
-      graph.label('me first!', t, f(t), { dy: -16, bg: true, color: C.ink });
-      graph.label('copying, 3 late', t, g(t), { dy: 22, bg: true, color: C.blue });
+      graph.label('the original', t, f(t), { dy: -16, bg: true, color: C.ink });
+      graph.label('copying, 3 behind', t, g(t), { dy: 22, bg: true, color: C.blue });
     }
   }
 
   btn.addEventListener('click', () => {
     if (run) run.cancel();
     state.done = false;
-    btn.textContent = '🏁 racing…';
+    btn.textContent = 'racing…';
     const finish = () => {
       state.t = graph.xmax;
       state.done = true;

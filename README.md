@@ -1,8 +1,9 @@
 # 📈 Graph Playground
 
-**Slide it. Stretch it. Flip it.** An interactive playground for *feeling* how
-graphs move when you tweak their equation — built for kids, and for every
-adult who stared at `y = 2(x − 3) + 1` and felt nothing move.
+**Slide it. Stretch it. Flip it.** An interactive companion for *feeling* how
+graphs move when you tweak their equation — built for students meeting function
+transformations for the first time, and for every adult who stared at
+`y = 2(x − 3) + 1` and felt nothing move.
 
 **Play it: [maninae.github.io/graph-playground](https://maninae.github.io/graph-playground/)**
 

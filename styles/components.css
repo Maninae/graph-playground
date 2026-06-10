@@ -65,9 +65,9 @@
 }
 
 .ctrl-label {
-  font: 600 15.5px var(--display);
+  font: 700 15px var(--body);
   color: var(--c);
-  min-width: 132px;
+  min-width: 148px;
   text-align: right;
 }
 
@@ -126,10 +126,11 @@
 
 /* ---- Buttons ---- */
 .btn {
-  font: 600 16px var(--display);
-  color: #fffdf6;
-  background: var(--red);
-  border: 2.5px solid var(--ink);
+  font: 700 15px var(--body);
+  letter-spacing: 0.01em;
+  color: var(--paper-2);
+  background: var(--ink);
+  border: 2px solid var(--ink);
   border-radius: 999px;
   padding: 9px 22px;
   cursor: pointer;
@@ -154,7 +155,7 @@
 }
 
 .shape-picker button {
-  font: 600 15px var(--display);
+  font: 700 14px var(--body);
   color: var(--ink-soft);
   background: transparent;
   border: 2px solid var(--rule);
@@ -209,8 +210,8 @@
 }
 
 .win-text {
-  font: 600 26px var(--display);
-  max-width: 460px;
+  font: 600 25px var(--display);
+  max-width: 480px;
 }
 
 .confetti-layer {

@@ -22,6 +22,12 @@
   text-decoration: none;
 }
 
+.brand-glyph {
+  font-style: italic;
+  color: var(--red);
+  margin-right: 2px;
+}
+
 .head-links {
   display: flex;
   gap: 18px;
@@ -57,18 +63,21 @@
 }
 
 .hero-verbs {
-  font: 600 clamp(22px, 4vw, 32px) var(--display);
-  margin-bottom: 18px;
+  font: 600 clamp(21px, 3.6vw, 30px) var(--display);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .hero-verbs span {
-  text-decoration: underline wavy;
-  text-decoration-thickness: 4px;
-  text-underline-offset: 7px;
+  padding: 1px 10px;
+  border-radius: 6px;
 }
-.hero-verbs .u-green { text-decoration-color: var(--green); }
-.hero-verbs .u-orange { text-decoration-color: var(--orange); }
-.hero-verbs .u-pink { text-decoration-color: var(--pink); }
+.hero-verbs .u-green { color: var(--green); background: color-mix(in srgb, var(--green) 13%, transparent); }
+.hero-verbs .u-orange { color: var(--orange); background: color-mix(in srgb, var(--orange) 13%, transparent); }
+.hero-verbs .u-pink { color: var(--pink); background: color-mix(in srgb, var(--pink) 13%, transparent); }
 
 .hero-sub {
   font-size: 19px;

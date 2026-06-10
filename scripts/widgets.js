@@ -24,7 +24,7 @@ export function buildWidget(mount, cfg) {
       <div class="eq-display"></div>
       <div class="graph-wrap">
         <canvas aria-label="interactive graph"></canvas>
-        ${cfg.drag ? '<span class="drag-hint">👆 you can drag the curve itself</span>' : ''}
+        ${cfg.drag ? '<span class="drag-hint">drag the curve directly</span>' : ''}
       </div>
       <div class="controls"></div>
     </div>`);
