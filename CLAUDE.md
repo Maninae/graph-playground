@@ -53,9 +53,9 @@ No circular imports.
 - **Equal-aspect axes.** `GraphCanvas` derives the y-range from the x-span
   and aspect ratio so 1 unit is the same length on both axes — slopes and
   shapes look true. Don't add independent y-scaling.
-- **Step 3 uses a V-shape on purpose.** A line slid sideways looks identical
-  to a line slid down (no landmark), which destroys the lesson. Any shape
-  used to teach h must have a trackable corner/vertex.
+- **Step 3 uses an upside-down parabola dome on purpose.** A line slid
+  sideways looks identical to a line slid down (no landmark), which destroys
+  the lesson. Any shape used to teach h must have a trackable peak/vertex.
 - **The race curve must be non-periodic.** With a sinusoid, "3 behind" is
   visually indistinguishable from some other phase shift, so the delayed-copy
   story collapses. `race.js` uses a sum of Gaussian bumps with one-of-a-kind
@@ -80,7 +80,7 @@ No circular imports.
   chip only when `b` is present in the params. Walkthrough and boss stay
   three-knob.
 - **Add a boss round**: append to `LEVELS` in `challenge.js`. Sliders are
-  near-continuous (step 0.05), so winning is tolerance-based (`TOL`:
+  near-continuous (step 0.01), so winning is tolerance-based (`TOL`:
   a ±0.1, h/k ±0.15) and the curve snaps to the exact target on a win.
   Keep targets well inside slider ranges.
 - **Add a section**: copy a `.step` block in `index.html`, mount a widget

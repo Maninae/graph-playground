@@ -7,6 +7,8 @@ transformations for the first time, and for every adult who stared at
 
 **Play it: [maninae.github.io/graph-playground](https://maninae.github.io/graph-playground/)**
 
+![Graph Playground hero — glowing transformed curves on a dark coordinate grid](assets/og.png)
+
 ## Why
 
 Why does subtracting 3 *inside* the parentheses slide a graph to the
@@ -22,8 +24,8 @@ This site replaces the prose with knobs:
   pen's every move, 3 steps late. A delay *is* a slide to the right
 - 🟠 **Ghost curves and per-point arrows** — every transformation shows where
   each dot came from and where it went
-- 📚 **A function library** — nine parent functions (line through parabola,
-  √x, 1/x, 2ˣ, log₂x, sine) with four knobs (`a·f(b(x−h))+k`) and live
+- 📚 **A function library** — nine parent functions (line, parabola, cubic,
+  |x|, √x, 1/x, 2ˣ, log₂x, sine) with four knobs (`a·f(b(x−h))+k`) and live
   dashed asymptotes that follow the knobs
 - 🎮 **A boss level** — six rounds of match-the-dashed-ghost, with confetti
   and the clean final equation on every win
@@ -40,3 +42,7 @@ python3 -m http.server 8000
 
 Plain HTML/CSS/JS — no build step, no dependencies. See `CLAUDE.md` for
 architecture notes.
+
+## License
+
+[MIT](LICENSE)
