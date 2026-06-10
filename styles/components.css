@@ -227,6 +227,19 @@
   max-width: 480px;
 }
 
+.win-eq-label {
+  font: 700 11px var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: -8px;
+}
+
+.win-eq {
+  font: 500 28px var(--display);
+  text-shadow: 0 0 30px rgba(88, 196, 221, 0.25);
+}
+
 .confetti-layer {
   position: absolute;
   inset: 0;

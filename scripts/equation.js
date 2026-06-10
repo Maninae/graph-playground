@@ -30,3 +30,23 @@ export function eqGeneric(shapeKey, { a, h, k }) {
   const body = SHAPES[shapeKey].expr(innerX(h));
   return `<var>y</var> = ${chip(fmt(a), C.orange)}&hairsp;·&hairsp;${body} ${signedChip(k, C.green)}`;
 }
+
+// The simplified, textbook form of the same equation — used when a round is
+// won. Drops the noise: no "1·", no "+ 0", no "(x − 0)", integers stay
+// integers. Knob colors are kept as plain colored text (no chip boxes).
+export function eqClean(shapeKey, { a, h, k }) {
+  const num = n => {
+    const v = Math.round(n * 100) / 100;
+    return (v < 0 ? '−' : '') + String(Math.abs(v));
+  };
+  const span = (t, c) => `<span style="color:${c}">${t}</span>`;
+  const inner = h === 0
+    ? '<var>x</var>'
+    : `<var>x</var> ${span(`${h < 0 ? '+' : '−'} ${num(Math.abs(h))}`, C.blue)}`;
+  const body = shapeKey === 'line' && h === 0 ? inner : SHAPES[shapeKey].expr(inner);
+  let aPart = '';
+  if (a === -1) aPart = span('−', C.orange);
+  else if (a !== 1) aPart = span(num(a), C.orange) + '·';
+  const kPart = k === 0 ? '' : ` ${span(`${k < 0 ? '−' : '+'} ${num(Math.abs(k))}`, C.green)}`;
+  return `<var>y</var> = ${aPart}${body}${kPart}`;
+}

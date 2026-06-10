@@ -3,7 +3,7 @@
 
 import { buildWidget } from './widgets.js';
 import { C, SHAPES } from './config.js';
-import { eqGeneric } from './equation.js';
+import { eqGeneric, eqClean } from './equation.js';
 import { confettiBurst } from './util.js';
 
 const KNOBS = {
@@ -85,13 +85,13 @@ export function buildChallenge(mount) {
             for (const key of level.controls) widget.setParam(key, level.target[key]);
             widget.render();
           }
-          win();
+          win(eqClean(level.shape, full(level.target)));
         }, 350);
       },
     });
   }
 
-  function win() {
+  function win(finalEq) {
     confettiBurst(widgetMount, [C.green, C.blue, C.orange, C.pink, C.red]);
     const last = state.level === LEVELS.length - 1;
     widgetMount.querySelector('.widget').insertAdjacentHTML('beforeend', `
@@ -99,6 +99,8 @@ export function buildChallenge(mount) {
         <div class="win-text">${last
           ? '🏆 All six. y = a·f(x − h) + k is just three knobs to you now.'
           : '⭐ Nailed it!'}</div>
+        <div class="win-eq-label">the equation you built</div>
+        <div class="win-eq">${finalEq}</div>
         <button class="btn next-btn">${last ? '↺ play again' : 'next round →'}</button>
       </div>`);
     widgetMount.querySelector('.next-btn').addEventListener('click', () => {
