@@ -30,8 +30,8 @@ No circular imports.
 | `styles/base.css` | Design tokens, reset, typography, callouts |
 | `styles/components.css` | Widget cards, equation chips, sliders, buttons, popups, boss-level UI |
 | `styles/sections.css` | Header, hero, step layout, cheat table, footer, responsive |
-| `scripts/config.js` | Palette constants + the shape library (`SHAPES`) |
-| `scripts/util.js` | Tweens, easing, reduced-motion flag, confetti |
+| `scripts/config.js` | Palette constants + the shape library (`SHAPES`: functions, notation, notes, asymptote/edge metadata) |
+| `scripts/util.js` | Tweens, easing, reduced-motion flag, confetti, library card thumbnails |
 | `scripts/graph.js` | `GraphCanvas`: retina canvas, math↔pixel mapping, grid/curve/point/arrow primitives |
 | `scripts/equation.js` | Colored live equation chips (`fmt`, `chip`, `innerX`, `eqGeneric`) |
 | `scripts/widgets.js` | `buildWidget`: the generic station (sliders + graph + equation + ghost/target/arrows/drag) |
@@ -66,10 +66,19 @@ No circular imports.
 
 ## How to…
 
-- **Add a shape**: one entry in `SHAPES` (`config.js`) — `f` (parent
-  function, should roughly fit y ∈ [−6, 6] for x ∈ [−7, 7]), `expr`
-  (equation body around the `(x − h)` chip markup), `label`. The playground
-  picker and `eqGeneric` pick it up automatically.
+- **Add a shape**: one entry in `SHAPES` (`config.js`) — required: `f`
+  (parent function, should roughly fit y ∈ [−6, 6] for x ∈ [−7, 7]), `expr`
+  (equation body around the rendered inside), `label`, `sub` (card formula),
+  `note` (behavior blurb, HTML ok). Optional: `asymV`/`asymH` (dashed guides
+  at x = h / y = k), `edge` (domain endpoint dot at (h, k)), `ycenter`
+  (view center while selected), `thumbX`/`thumbY` (thumbnail window).
+  The library card grid, notes, guides, and `eqGeneric` pick it up
+  automatically. Discontinuous shapes are fine — `GraphCanvas.curve` breaks
+  segments on non-finite values and on jumps > 3× the view height.
+- **The b knob** (horizontal squeeze, pink) exists only in the library:
+  the library `fn` is `a·f(b·(x − h)) + k`, and `eqGeneric` renders the b
+  chip only when `b` is present in the params. Walkthrough and boss stay
+  three-knob.
 - **Add a boss round**: append to `LEVELS` in `challenge.js`. Sliders are
   near-continuous (step 0.05), so winning is tolerance-based (`TOL`:
   a ±0.1, h/k ±0.15) and the curve snaps to the exact target on a win.

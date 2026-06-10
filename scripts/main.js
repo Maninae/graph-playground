@@ -87,19 +87,20 @@ buildWidget(document.querySelector('#w-stretch'), {
   curveColor: C.orange,
 });
 
-// ---- Step 5: the playground — every shape, all three knobs ----
+// ---- Step 5: the function library — nine shapes, all four knobs ----
 buildWidget(document.querySelector('#w-playground'), {
   id: 'play',
   graph: { xspan: 18 },
   shapes: Object.keys(SHAPES),
   params: [
     { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.05, init: 1 },
+    { key: 'b', label: 'b — squeeze / widen', color: C.pink, min: -3, max: 3, step: 0.05, init: 1 },
     { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.05, init: 0 },
     { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.05, init: 0 },
   ],
-  fn: (ps, x, shape) => ps.a * SHAPES[shape].f(x - ps.h) + ps.k,
+  fn: (ps, x, shape) => ps.a * SHAPES[shape].f(ps.b * (x - ps.h)) + ps.k,
   eq: (ps, shape) => eqGeneric(shape, ps),
-  ghost: { a: 1, h: 0, k: 0 },
+  ghost: { a: 1, b: 1, h: 0, k: 0 },
   drag: ['h', 'k'],
   curveColor: C.red,
 });

@@ -15,40 +15,54 @@
 
 import { GraphCanvas } from './graph.js';
 import { C, SHAPES } from './config.js';
-import { clamp, chain } from './util.js';
+import { clamp, chain, drawThumb } from './util.js';
 
 export function buildWidget(mount, cfg) {
   mount.insertAdjacentHTML('beforeend', `
     <div class="widget">
-      ${cfg.shapes ? '<div class="shape-picker" role="tablist"></div>' : ''}
+      ${cfg.shapes ? '<div class="shape-cards" role="tablist"></div>' : ''}
       <div class="eq-display"></div>
       <div class="graph-wrap">
         <canvas aria-label="interactive graph"></canvas>
         ${cfg.drag ? '<span class="drag-hint">drag the curve directly</span>' : ''}
       </div>
+      ${cfg.shapes ? '<p class="shape-note"></p>' : ''}
       <div class="controls"></div>
     </div>`);
   const root = mount.lastElementChild;
   const eqEl = root.querySelector('.eq-display');
   const graph = new GraphCanvas(root.querySelector('canvas'), cfg.graph || {});
   const controls = root.querySelector('.controls');
+  const noteEl = root.querySelector('.shape-note');
 
   const params = {};
   const state = { shape: cfg.shapes ? cfg.shapes[0] : null };
   let wiggling = null;
 
+  function applyShape() {
+    const meta = SHAPES[state.shape];
+    if (noteEl) noteEl.innerHTML = meta.note || '';
+    graph.setYCenter(meta.ycenter ?? (cfg.graph && cfg.graph.ycenter) ?? 0);
+    render();
+  }
+
   if (cfg.shapes) {
-    const picker = root.querySelector('.shape-picker');
+    const picker = root.querySelector('.shape-cards');
     for (const key of cfg.shapes) {
-      picker.insertAdjacentHTML('beforeend',
-        `<button role="tab" data-shape="${key}" class="${key === state.shape ? 'active' : ''}">${SHAPES[key].label}</button>`);
+      picker.insertAdjacentHTML('beforeend', `
+        <button role="tab" data-shape="${key}" class="shape-card ${key === state.shape ? 'active' : ''}">
+          <canvas width="152" height="92" aria-hidden="true"></canvas>
+          <span class="sc-label">${SHAPES[key].label}</span>
+          <span class="sc-sub">${SHAPES[key].sub}</span>
+        </button>`);
+      drawThumb(picker.lastElementChild.querySelector('canvas'), SHAPES[key]);
     }
     picker.addEventListener('click', e => {
       const btn = e.target.closest('button[data-shape]');
       if (!btn) return;
       state.shape = btn.dataset.shape;
       picker.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
-      render();
+      applyShape();
     });
   }
 
@@ -153,10 +167,30 @@ export function buildWidget(mount, cfg) {
       }
     }
     graph.curve(fnFor(params), { color: cfg.curveColor || C.red, width: 4, glow: true });
+    drawGuides();
     if (cfg.decorate) cfg.decorate(graph, params, state.shape);
     eqEl.innerHTML = cfg.eq(params, state.shape);
     if (cfg.onChange) cfg.onChange(params);
   }
+
+  // Dashed asymptote guides and domain-edge marker, color-matched to the
+  // knob that moves them (h = blue vertical, k = green horizontal).
+  function drawGuides() {
+    const meta = state.shape && SHAPES[state.shape];
+    if (!meta || params.h === undefined || params.k === undefined) return;
+    const fmtV = v => (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+    if (meta.asymV) {
+      graph.guide(params.h, graph.ymin, params.h, graph.ymax, C.blue);
+      graph.label(`x = ${fmtV(params.h)}`, params.h, graph.ymax - 0.7, { color: C.blue, bg: true, dx: 44 });
+    }
+    if (meta.asymH) {
+      graph.guide(graph.xmin, params.k, graph.xmax, params.k, C.green);
+      graph.label(`y = ${fmtV(params.k)}`, graph.xmax - 1.4, params.k, { color: C.green, bg: true, dy: -14 });
+    }
+    if (meta.edge) graph.point(params.h, params.k, { color: C.blue, r: 5.5 });
+  }
+
+  if (cfg.shapes) applyShape();
 
   graph.onResize = render;
   render();

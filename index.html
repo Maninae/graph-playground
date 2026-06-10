@@ -21,7 +21,7 @@
 <header class="site-head">
   <a class="brand" href="#top"><span class="brand-glyph">ƒ</span> Graph Playground</a>
   <nav class="head-links">
-    <a href="#playground">Playground</a>
+    <a href="#playground">Library</a>
     <a class="head-boss" href="#boss">Boss level</a>
     <a href="https://github.com/Maninae/graph-playground">GitHub</a>
   </nav>
@@ -43,7 +43,8 @@
       and build the intuition that static textbook figures can't.
     </p>
     <a class="btn hero-cta" href="#machine">Start playing ↓</a>
-    <p class="hero-meta">3 knobs · 5 shapes · 6 challenge rounds · every transformation on one page</p>
+    <p class="hero-meta">4 knobs · 9 functions · 6 challenge rounds · every transformation on one page</p>
+    <a class="hero-lib" href="#playground">already know the basics? jump to the function library →</a>
   </div>
 </section>
 
@@ -148,16 +149,18 @@
 <section class="step" id="playground" style="--c: var(--red)">
   <div class="step-head">
     <span class="step-num">5</span>
-    <span class="eyebrow" style="--c: var(--red)">step five · all three knobs</span>
-    <h2>One formula moves every graph</h2>
+    <span class="eyebrow" style="--c: var(--red)">the function library · four knobs</span>
+    <h2>The function library</h2>
     <p class="lede">
-      <strong>y&nbsp;=&nbsp;a·f(x&nbsp;−&nbsp;h)&nbsp;+&nbsp;k.</strong> That's the whole
-      story — for lines, parabolas, cubics, absolute value, even
-      <button class="term" data-pop="sine">sine</button>.
-      <strong class="c-orange">a stretches and flips</strong>,
-      <strong class="c-blue">h shifts sideways</strong> (backwards!),
-      <strong class="c-green">k shifts vertically</strong>.
-      Pick a shape — or grab the curve and drag it around.
+      <strong>y&nbsp;=&nbsp;a·f(b·(x&nbsp;−&nbsp;h))&nbsp;+&nbsp;k</strong> — the complete
+      formula, and a shelf of nine functions to aim it at. You already own
+      <strong class="c-orange">a</strong>, <strong class="c-blue">h</strong>, and
+      <strong class="c-green">k</strong>. The new knob,
+      <strong class="c-pink">b, multiplies x before anything else happens</strong> —
+      it's an inside knob, so it works backwards too: b&nbsp;=&nbsp;2 squeezes the graph
+      to half its width. Some of these functions come with dashed
+      <button class="term" data-pop="asym">asymptotes</button> — watch them follow
+      your knobs. Pick a card, or grab the curve and drag it.
     </p>
   </div>
   <div id="w-playground"></div>
@@ -175,6 +178,8 @@
         <tr><td>y = <span class="c-orange">2</span>·f(x)</td><td>vertical stretch ×2 (reads narrower)</td><td class="muted" rowspan="2">heights scale; points on the x-axis don't move</td></tr>
         <tr><td>y = <span class="c-orange"><span class="frac"><span class="num">1</span><span class="den">2</span></span></span>·f(x)</td><td>compression to half (reads wider)</td></tr>
         <tr><td>y = <span class="c-orange">−</span>f(x)</td><td><strong>reflects</strong> through the x-axis</td><td class="muted">a stretch by −1: every output changes sign</td></tr>
+        <tr><td>y = f(<span class="c-pink">2</span>·x)</td><td>squeezes to <strong>half the width</strong></td><td rowspan="2"><strong>backwards again!</strong> it's inside the function — bigger b, narrower graph</td></tr>
+        <tr><td>y = f(<span class="c-pink"><span class="frac"><span class="num">1</span><span class="den">2</span></span></span>·x)</td><td>stretches <strong>twice as wide</strong></td></tr>
       </tbody>
     </table>
   </div>
@@ -217,6 +222,14 @@
   x says how far right to go (negative means left); y says how far up
   (negative means down). The point lives where you stop.</p>
   <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank" rel="noopener">More: coordinate system →</a>
+</template>
+
+<template id="pop-asym">
+  <p><strong>An asymptote is a line a curve gets forever closer to but never
+  touches.</strong> The graph can come within a hair of it — closer than any
+  distance you name — yet never arrives. Asymptotes act like invisible walls
+  and floors, and they move when you turn the h and k knobs.</p>
+  <a href="https://en.wikipedia.org/wiki/Asymptote" target="_blank" rel="noopener">More: asymptote →</a>
 </template>
 
 <template id="pop-sine">

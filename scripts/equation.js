@@ -19,15 +19,19 @@ export function signedChip(v, color) {
   return chip(`${v < 0 ? '−' : '+'}&hairsp;${fmt(Math.abs(v))}`, color);
 }
 
-// The "x − h" inside the parentheses. The sign flip lives here:
-// h = 3 renders "x − 3", h = −2 renders "x + 2".
-export function innerX(h) {
-  return `<var>x</var>&hairsp;${chip(`${h < 0 ? '+' : '−'}&hairsp;${fmt(Math.abs(h))}`, C.blue)}`;
+// The inside of the function. The sign flip lives here: h = 3 renders
+// "x − 3", h = −2 renders "x + 2". With b defined (library), the whole
+// thing becomes "b·(x − h)".
+export function innerX(h, b) {
+  const hPart = `<var>x</var>&hairsp;${chip(`${h < 0 ? '+' : '−'}&hairsp;${fmt(Math.abs(h))}`, C.blue)}`;
+  if (b === undefined) return hPart;
+  return `${chip(fmt(b), C.pink)}·(${hPart})`;
 }
 
-// Full y = a·f(x − h) + k for any shape in the library.
-export function eqGeneric(shapeKey, { a, h, k }) {
-  const body = SHAPES[shapeKey].expr(innerX(h));
+// Full y = a·f(b·(x − h)) + k for any shape in the library.
+// b is optional: walkthrough and boss equations omit it.
+export function eqGeneric(shapeKey, { a, b, h, k }) {
+  const body = SHAPES[shapeKey].expr(innerX(h, b));
   return `<var>y</var> = ${chip(fmt(a), C.orange)}&hairsp;·&hairsp;${body} ${signedChip(k, C.green)}`;
 }
 

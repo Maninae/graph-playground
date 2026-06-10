@@ -33,6 +33,37 @@ export function chain(specs, onAllDone) {
   return { cancel: () => { cancelled = true; if (cur) cur.cancel(); } };
 }
 
+// Sparkline thumbnail of a parent function, for the library picker cards.
+// The canvas element's width/height attributes are 2x its CSS size (retina).
+export function drawThumb(canvas, shape) {
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const [x0, x1] = shape.thumbX || [-5, 5];
+  const [y0, y1] = shape.thumbY || [-5, 5];
+  const px = x => ((x - x0) / (x1 - x0)) * W;
+  const py = y => H - ((y - y0) / (y1 - y0)) * H;
+  ctx.strokeStyle = 'rgba(190,210,250,0.22)';
+  ctx.lineWidth = 1.5;
+  if (x0 < 0 && x1 > 0) { ctx.beginPath(); ctx.moveTo(px(0), 0); ctx.lineTo(px(0), H); ctx.stroke(); }
+  if (y0 < 0 && y1 > 0) { ctx.beginPath(); ctx.moveTo(0, py(0)); ctx.lineTo(W, py(0)); ctx.stroke(); }
+  ctx.strokeStyle = '#58c4dd';
+  ctx.lineWidth = 3;
+  ctx.lineJoin = ctx.lineCap = 'round';
+  ctx.beginPath();
+  let started = false, prevY = 0;
+  for (let i = 0; i <= 90; i++) {
+    const x = x0 + ((x1 - x0) * i) / 90;
+    const y = shape.f(x);
+    if (!Number.isFinite(y)) { started = false; continue; }
+    if (started && Math.abs(y - prevY) > 3 * (y1 - y0)) started = false;
+    const cy = Math.max(-2 * H, Math.min(3 * H, py(y)));
+    if (started) ctx.lineTo(px(x), cy);
+    else { ctx.moveTo(px(x), cy); started = true; }
+    prevY = y;
+  }
+  ctx.stroke();
+}
+
 // Celebration burst over a host element (host must be position:relative).
 export function confettiBurst(host, colors) {
   const rect = host.getBoundingClientRect();

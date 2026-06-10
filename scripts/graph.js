@@ -45,6 +45,12 @@ export class GraphCanvas {
     if (this.onResize) this.onResize();
   }
 
+  setYCenter(v) {
+    if (v === this.ycenter) return;
+    this.ycenter = v;
+    this.resize();
+  }
+
   px(x) { return (x - this.xmin) * this.scale; }
   py(y) { return this.h - (y - this.ymin) * this.scale; }
   mathX(px) { return this.xmin + px / this.scale; }
@@ -96,15 +102,19 @@ export class GraphCanvas {
     if (glow) { ctx.shadowColor = color; ctx.shadowBlur = 14; }
     ctx.beginPath();
     const n = 400;
+    const jump = 3 * (this.ymax - this.ymin); // discontinuity (e.g. 1/x): break, don't connect
     let started = false;
+    let prevY = 0;
     for (let i = 0; i <= n; i++) {
       const x = this.xmin + ((xEnd - this.xmin) * i) / n;
       const y = fn(x);
       if (!Number.isFinite(y)) { started = false; continue; }
+      if (started && Math.abs(y - prevY) > jump) started = false;
       const px = this.px(x);
       const py = Math.max(-2000, Math.min(4000, this.py(y)));
       if (started) ctx.lineTo(px, py);
       else { ctx.moveTo(px, py); started = true; }
+      prevY = y;
     }
     ctx.stroke();
     ctx.restore();

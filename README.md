@@ -22,7 +22,11 @@ This site replaces the prose with knobs:
   pen's every move, 3 steps late. A delay *is* a slide to the right
 - 🟠 **Ghost curves and per-point arrows** — every transformation shows where
   each dot came from and where it went
+- 📚 **A function library** — nine parent functions (line through parabola,
+  √x, 1/x, 2ˣ, log₂x, sine) with four knobs (`a·f(b(x−h))+k`) and live
+  dashed asymptotes that follow the knobs
 - 🎮 **A boss level** — six rounds of match-the-dashed-ghost, with confetti
+  and the clean final equation on every win
 
 No formulas to memorize. Three color-coded knobs (`a`, `h`, `k`) that mean the
 same thing in every slider, equation, and arrow on the page.

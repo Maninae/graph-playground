@@ -103,6 +103,15 @@
   color: var(--ink-faint);
 }
 
+.hero-lib {
+  display: inline-block;
+  margin-top: 14px;
+  font: 600 13px var(--mono);
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--blue);
+}
+
 /* ---- Step sections ---- */
 .step {
   position: relative;
