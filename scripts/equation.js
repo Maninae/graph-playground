@@ -3,10 +3,11 @@
 
 import { C, SHAPES } from './config.js';
 
-// Format a number for display: ≤2 decimals, real minus sign.
+// Format a number for display: always exactly 2 decimals (constant width,
+// no layout flicker while sliding), real minus sign.
 export function fmt(n) {
   const v = Math.round(n * 100) / 100;
-  return (v < 0 ? '−' : '') + String(Math.abs(v));
+  return (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
 }
 
 export function chip(html, color) {

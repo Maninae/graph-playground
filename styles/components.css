@@ -44,6 +44,7 @@
 /* ---- Equation display ---- */
 .eq-display {
   font: 500 23px var(--display);
+  font-variant-numeric: tabular-nums;
   text-align: center;
   margin-bottom: 14px;
   min-height: 38px;
@@ -80,8 +81,9 @@
 
 .ctrl-value {
   font: 600 16px var(--mono);
+  font-variant-numeric: tabular-nums;
   color: var(--c);
-  min-width: 56px;
+  min-width: 64px;
 }
 
 .ctrl-row input[type='range'] {

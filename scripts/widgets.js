@@ -77,7 +77,10 @@ export function buildWidget(mount, cfg) {
     });
   }
 
-  function disp(v) { return (v < 0 ? '−' : '') + String(Math.abs(Math.round(v * 100) / 100)); }
+  function disp(v) {
+    const r = Math.round(v * 100) / 100;
+    return (r < 0 ? '−' : '') + Math.abs(r).toFixed(2);
+  }
 
   function setParam(key, v) {
     params[key] = v;
