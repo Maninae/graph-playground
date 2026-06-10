@@ -54,6 +54,10 @@ No circular imports.
 - **Step 3 uses a V-shape on purpose.** A line slid sideways looks identical
   to a line slid down (no landmark), which destroys the lesson. Any shape
   used to teach h must have a trackable corner/vertex.
+- **The race curve must be non-periodic.** With a sinusoid, "3 behind" is
+  visually indistinguishable from some other phase shift, so the delayed-copy
+  story collapses. `race.js` uses a sum of Gaussian bumps with one-of-a-kind
+  landmarks (hill, dip, peak); keep that property if you change the curve.
 - **Reduced motion**: every animation checks `REDUCED` from `util.js` and
   jumps to the final state. Keep that for anything new.
 - Keep modules under ~300 lines (house rule) — split before they grow.

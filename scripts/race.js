@@ -8,7 +8,11 @@ import { C } from './config.js';
 import { tween, easeLinear, REDUCED } from './util.js';
 
 const DELAY = 3;
-const f = x => 2.2 * Math.sin(1.1 * x) + 0.18 * x; // a wiggly "roller coaster"
+// Deliberately non-periodic: a periodic wave makes "3 behind" ambiguous
+// (a lag looks identical to some other phase shift). Three one-of-a-kind
+// landmarks — broad hill, deep dip, sharp peak — make the copy traceable.
+const bump = (x, c, w, a) => a * Math.exp(-(((x - c) / w) ** 2));
+const f = x => bump(x, -4.5, 1.4, 3.1) + bump(x, -0.5, 1.0, -2.4) + bump(x, 3.5, 0.7, 2.6);
 const g = x => f(x - DELAY);
 
 export function buildRace(mount) {
@@ -21,9 +25,9 @@ export function buildRace(mount) {
         </div>
       </div>
       <p class="race-caption">
-        The <strong style="color:${C.ink}">black pen</strong> draws y = wave(x).
-        The <strong style="color:${C.blue}">blue pen</strong> draws y = wave(x&hairsp;<span class="echip" style="--c:${C.blue}">−&hairsp;3</span>):
-        the same moves, three steps later. A 3-step delay <em>is</em> a 3-unit shift to the right.
+        The <strong style="color:${C.ink}">black pen</strong> draws y = f(x), a bumpy ride.
+        The <strong style="color:${C.blue}">blue pen</strong> draws y = f(x&hairsp;<span class="echip" style="--c:${C.blue}">−&hairsp;3</span>):
+        the same hill, dip, and peak, three steps later. A 3-step delay <em>is</em> a 3-unit shift to the right.
       </p>
     </div>`);
   const root = mount.lastElementChild;
