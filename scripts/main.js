@@ -55,17 +55,19 @@ buildWidget(document.querySelector('#w-updown'), {
   curveColor: C.green,
 });
 
-// ---- Step 3: slide sideways (h, blue) on a V-shape ----
+// ---- Step 3: slide sideways (h, blue) on a wide upside-down parabola ----
+// The dome's peak is the landmark that makes the horizontal shift readable.
+const dome = x => 2 - (x * x) / 4;
 buildWidget(document.querySelector('#w-sideways'), {
   id: 'sideways',
   graph: { xspan: 18 },
   params: [{ key: 'h', label: 'shift sideways', color: C.blue, min: -6, max: 6, step: 0.05, init: 3 }],
-  fn: (ps, x) => Math.abs(x - ps.h) - 2,
-  eq: ps => `<var>y</var> = |&hairsp;${innerX(ps.h)}&hairsp;| − 2`,
+  fn: (ps, x) => dome(x - ps.h),
+  eq: ps => `<var>y</var> = 2 − <span class="frac"><span class="num">(${innerX(ps.h)})²</span><span class="den">4</span></span>`,
   ghost: { h: 0 },
   arrows: [-4, -2, 0, 2, 4],
   arrowColor: C.blue,
-  pointAt: (ps, bx) => [bx + ps.h, Math.abs(bx) - 2],
+  pointAt: (ps, bx) => [bx + ps.h, dome(bx)],
   curveColor: C.blue,
 });
 

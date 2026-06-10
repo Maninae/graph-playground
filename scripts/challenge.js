@@ -19,9 +19,9 @@ const TOL = { a: 0.1, h: 0.15, k: 0.15 };
 const LEVELS = [
   { shape: 'line', controls: ['k'], fixed: { a: 0.5, h: 0 }, target: { k: 3 },
     hint: 'One knob: vertical translation.' },
-  { shape: 'abs', controls: ['h'], fixed: { a: 1, k: -2 }, target: { h: -4 },
+  { shape: 'quad', controls: ['h'], fixed: { a: -0.25, k: 2 }, target: { h: -4 },
     hint: 'Horizontal shift — remember, signs work backwards inside.' },
-  { shape: 'abs', controls: ['h', 'k'], fixed: { a: 1 }, target: { h: 3, k: 2 },
+  { shape: 'quad', controls: ['h', 'k'], fixed: { a: -0.25 }, target: { h: 3, k: 2 },
     hint: 'Two knobs. Park the vertex on the target’s vertex.' },
   { shape: 'quad', controls: ['a', 'k'], fixed: { h: 0 }, target: { a: 0.5, k: -3 },
     hint: 'Stretch or compress first, then translate.' },
