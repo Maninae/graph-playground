@@ -1,0 +1,122 @@
+/* Design tokens, reset, page background, typography, callouts.
+   Aesthetic: a school notebook come alive — warm paper, faint graph-paper
+   grid, navy ink, crayon accents. Knob colors are load-bearing:
+   green = up/down (k), blue = sideways (h), orange = stretch/flip (a). */
+
+:root {
+  --paper: #faf3e6;
+  --paper-2: #fffdf6;
+  --ink: #1f2b3e;
+  --ink-soft: rgba(31, 43, 62, 0.68);
+  --ink-faint: rgba(31, 43, 62, 0.42);
+  --rule: rgba(31, 43, 62, 0.14);
+  --green: #1fa862;
+  --blue: #2e66e5;
+  --orange: #f08a12;
+  --pink: #e84c7d;
+  --red: #e8443a;
+  --gold: #f5b50a;
+  --display: 'Fredoka', sans-serif;
+  --body: 'Nunito', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --radius: 16px;
+  --card-shadow: 6px 7px 0 rgba(31, 43, 62, 0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(31, 43, 62, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 43, 62, 0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+p { margin: 0; }
+
+a { color: var(--blue); }
+
+::selection { background: rgba(242, 138, 13, 0.3); }
+
+.eyebrow {
+  font: 600 12.5px var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c, var(--ink-faint));
+}
+
+.lede {
+  font-size: 18.5px;
+  color: var(--ink-soft);
+}
+
+.c-green { color: var(--green); }
+.c-blue { color: var(--blue); }
+.c-orange { color: var(--orange); }
+.c-pink { color: var(--pink); }
+.c-red { color: var(--red); }
+
+/* Clickable terms that open a deep-dive popup */
+.term {
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--blue);
+  border-bottom: 2.5px dotted var(--blue);
+  cursor: help;
+  padding: 0;
+}
+
+/* Callouts */
+.callout {
+  background: var(--paper-2);
+  border: 2.5px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 28px auto 0;
+  max-width: 720px;
+  font-size: 16.5px;
+}
+
+.callout-label {
+  font: 700 11px var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.callout.insight {
+  border-color: rgba(31, 168, 98, 0.55);
+  background: #edf8f1;
+}
+.callout.insight .callout-label { color: var(--green); }
+
+.callout.gotcha {
+  background: #fff1c2;
+  border: none;
+  box-shadow: var(--card-shadow);
+  transform: rotate(-0.5deg);
+}
+.callout.gotcha .callout-label { color: var(--orange); }
+
+.callout.note {
+  font-size: 15.5px;
+  color: var(--ink-soft);
+}
+.callout.note .callout-label { color: var(--ink-faint); }
