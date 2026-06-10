@@ -18,7 +18,7 @@ export function buildMachine(mount) {
       <div class="controls">
         <div class="ctrl-row" style="--c:${C.blue}">
           <label class="ctrl-label" for="machine-x">input x</label>
-          <input type="range" id="machine-x" min="-8" max="8" step="0.05" value="3">
+          <input type="range" id="machine-x" min="-8" max="8" step="0.01" value="3">
           <output class="ctrl-value">3</output>
         </div>
         <div class="ctrl-row ctrl-actions">

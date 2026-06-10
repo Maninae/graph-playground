@@ -45,7 +45,7 @@ buildMachine(document.querySelector('#w-machine'));
 buildWidget(document.querySelector('#w-updown'), {
   id: 'updown',
   graph: { xspan: 18 },
-  params: [{ key: 'c', label: 'shift up / down', color: C.green, min: -5, max: 5, step: 0.05, init: 1 }],
+  params: [{ key: 'c', label: 'shift up / down', color: C.green, min: -5, max: 5, step: 0.01, init: 1 }],
   fn: (ps, x) => x / 2 + ps.c,
   eq: ps => `<var>y</var> = <span class="frac"><span class="num"><var>x</var></span><span class="den">2</span></span> ${signedChip(ps.c, C.green)}`,
   ghost: { c: 1 },
@@ -61,7 +61,7 @@ const dome = x => 2 - (x * x) / 4;
 buildWidget(document.querySelector('#w-sideways'), {
   id: 'sideways',
   graph: { xspan: 18 },
-  params: [{ key: 'h', label: 'shift sideways', color: C.blue, min: -6, max: 6, step: 0.05, init: 3 }],
+  params: [{ key: 'h', label: 'shift sideways', color: C.blue, min: -6, max: 6, step: 0.01, init: 3 }],
   fn: (ps, x) => dome(x - ps.h),
   eq: ps => `<var>y</var> = 2 − <span class="frac"><span class="num">(${innerX(ps.h)})²</span><span class="den">4</span></span>`,
   ghost: { h: 0 },
@@ -77,7 +77,7 @@ buildRace(document.querySelector('#w-race'));
 buildWidget(document.querySelector('#w-stretch'), {
   id: 'stretch',
   graph: { xspan: 18, ycenter: 1.5 },
-  params: [{ key: 'a', label: 'stretch / flip', color: C.orange, min: -3, max: 3, step: 0.05, init: 2 }],
+  params: [{ key: 'a', label: 'stretch / flip', color: C.orange, min: -3, max: 3, step: 0.01, init: 2 }],
   fn: (ps, x) => ps.a * x * x,
   eq: ps => `<var>y</var> = ${chip(fmt(ps.a), C.orange)}&hairsp;·&hairsp;<var>x</var>²`,
   ghost: { a: 1 },
@@ -93,10 +93,10 @@ buildWidget(document.querySelector('#w-playground'), {
   graph: { xspan: 18 },
   shapes: Object.keys(SHAPES),
   params: [
-    { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.05, init: 1 },
-    { key: 'b', label: 'b — squeeze / widen', color: C.pink, min: -3, max: 3, step: 0.05, init: 1 },
-    { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.05, init: 0 },
-    { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.05, init: 0 },
+    { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.01, init: 1 },
+    { key: 'b', label: 'b — squeeze / widen', color: C.pink, min: -3, max: 3, step: 0.01, init: 1 },
+    { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.01, init: 0 },
+    { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.01, init: 0 },
   ],
   fn: (ps, x, shape) => ps.a * SHAPES[shape].f(ps.b * (x - ps.h)) + ps.k,
   eq: (ps, shape) => eqGeneric(shape, ps),

@@ -7,9 +7,9 @@ import { eqGeneric, eqClean } from './equation.js';
 import { confettiBurst } from './util.js';
 
 const KNOBS = {
-  a: { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.05, init: 1 },
-  h: { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.05, init: 0 },
-  k: { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.05, init: 0 },
+  a: { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.01, init: 1 },
+  h: { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.01, init: 0 },
+  k: { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.01, init: 0 },
 };
 
 // Sliders are continuous, so winning is tolerance-based; on a win the
