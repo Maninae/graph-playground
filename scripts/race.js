@@ -25,8 +25,8 @@ export function buildRace(mount) {
         </div>
       </div>
       <p class="race-caption">
-        The <strong style="color:${C.ink}">black pen</strong> draws y = f(x), a bumpy ride.
-        The <strong style="color:${C.blue}">blue pen</strong> draws y = f(x&hairsp;<span class="echip" style="--c:${C.blue}">−&hairsp;3</span>):
+        The <strong style="color:${C.ink}">white pen</strong> draws <var>y</var> = f(<var>x</var>), a bumpy ride.
+        The <strong style="color:${C.blue}">blue pen</strong> draws <var>y</var> = f(<var>x</var>&hairsp;<span class="echip" style="--c:${C.blue}">−&hairsp;3</span>):
         the same hill, dip, and peak, three steps later. A 3-step delay <em>is</em> a 3-unit shift to the right.
       </p>
     </div>`);

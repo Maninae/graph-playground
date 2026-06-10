@@ -4,11 +4,13 @@
 /* ---- Widget card ---- */
 .widget {
   position: relative;
-  background: var(--paper-2);
-  border: 2.5px solid var(--ink);
-  border-radius: 18px;
+  background: rgba(18, 22, 36, 0.72);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
   padding: 22px 24px;
   box-shadow: var(--card-shadow);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   max-width: 760px;
   margin: 30px auto 0;
 }
@@ -21,9 +23,9 @@
 
 .graph-wrap canvas {
   display: block;
-  background: #fffefa;
-  border: 1.5px solid var(--rule);
-  border-radius: 12px;
+  background: rgba(9, 11, 19, 0.55);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
 }
 
 .drag-hint {
@@ -32,8 +34,8 @@
   right: 14px;
   font: 700 12px var(--body);
   color: var(--ink-faint);
-  background: rgba(255, 253, 246, 0.88);
-  border: 1.5px solid var(--rule);
+  background: rgba(11, 13, 21, 0.8);
+  border: 1px solid var(--rule);
   padding: 3px 10px;
   border-radius: 999px;
   pointer-events: none;
@@ -41,18 +43,23 @@
 
 /* ---- Equation display ---- */
 .eq-display {
-  font: 600 21px var(--mono);
+  font: 500 23px var(--display);
   text-align: center;
   margin-bottom: 14px;
-  min-height: 36px;
+  min-height: 38px;
+}
+
+.eq-display var, .machine-eq var {
+  font-style: italic;
+  font-family: inherit;
 }
 
 .echip {
   display: inline-block;
   padding: 0 9px;
-  border-radius: 9px;
-  background: color-mix(in srgb, var(--c) 12%, #fffdf6);
-  border: 2px solid color-mix(in srgb, var(--c) 45%, #fffdf6);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--c) 50%, transparent);
   color: var(--c);
 }
 
@@ -74,38 +81,37 @@
 .ctrl-value {
   font: 600 16px var(--mono);
   color: var(--c);
-  min-width: 52px;
+  min-width: 56px;
 }
 
 .ctrl-row input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
   flex: 1;
-  height: 12px;
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--c, var(--ink)) 16%, white);
-  border: 2px solid color-mix(in srgb, var(--c, var(--ink)) 32%, white);
+  height: 6px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--c, var(--ink)) 22%, rgba(132, 160, 220, 0.1));
   cursor: pointer;
 }
 
 .ctrl-row input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--c, var(--ink));
-  border: 3px solid #fffdf6;
-  box-shadow: 0 2px 0 rgba(31, 43, 62, 0.3);
+  border: 2.5px solid var(--paper);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--c, var(--ink)) 65%, transparent);
   cursor: grab;
 }
 
 .ctrl-row input[type='range']::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   background: var(--c, var(--ink));
-  border: 3px solid #fffdf6;
-  box-shadow: 0 2px 0 rgba(31, 43, 62, 0.3);
+  border: 2.5px solid var(--paper);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--c, var(--ink)) 65%, transparent);
   cursor: grab;
 }
 
@@ -114,13 +120,13 @@
   height: 32px;
   flex: none;
   border-radius: 50%;
-  border: 2px solid var(--c, var(--ink));
+  border: 1.5px solid var(--c, var(--ink));
   color: var(--c, var(--ink));
   background: transparent;
-  font-size: 12px;
+  font-size: 11px;
   cursor: pointer;
 }
-.wiggle-btn:hover { background: color-mix(in srgb, var(--c) 12%, transparent); }
+.wiggle-btn:hover { background: color-mix(in srgb, var(--c) 18%, transparent); }
 
 .ctrl-actions { justify-content: center; gap: 12px; }
 
@@ -128,22 +134,27 @@
 .btn {
   font: 700 15px var(--body);
   letter-spacing: 0.01em;
-  color: var(--paper-2);
-  background: var(--ink);
-  border: 2px solid var(--ink);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--blue) 16%, transparent);
+  border: 1.5px solid var(--blue);
   border-radius: 999px;
   padding: 9px 22px;
   cursor: pointer;
-  transition: transform 0.12s, box-shadow 0.12s;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.12s;
 }
-.btn:hover { transform: translate(-1px, -2px); box-shadow: 3px 4px 0 rgba(31, 43, 62, 0.22); }
-.btn:active { transform: translate(1px, 1px); box-shadow: none; }
+.btn:hover {
+  background: color-mix(in srgb, var(--blue) 30%, transparent);
+  box-shadow: 0 0 18px rgba(88, 196, 221, 0.3);
+  transform: translateY(-1px);
+}
+.btn:active { transform: translateY(1px); box-shadow: none; }
 
 .btn.ghost {
   background: transparent;
   color: var(--ink-soft);
   border-color: var(--rule);
 }
+.btn.ghost:hover { box-shadow: none; background: rgba(132, 160, 220, 0.1); }
 
 /* ---- Shape picker ---- */
 .shape-picker {
@@ -158,15 +169,15 @@
   font: 700 14px var(--body);
   color: var(--ink-soft);
   background: transparent;
-  border: 2px solid var(--rule);
+  border: 1.5px solid var(--rule);
   border-radius: 999px;
   padding: 5px 16px;
   cursor: pointer;
 }
 .shape-picker button.active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper-2);
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
 }
 
 /* ---- Captions under widgets ---- */
@@ -184,9 +195,9 @@
 .challenge-top { text-align: center; }
 
 .stars { font-size: 30px; letter-spacing: 8px; }
-.star { color: rgba(31, 43, 62, 0.15); }
-.star.earned { color: var(--gold); text-shadow: 1px 2px 0 rgba(31, 43, 62, 0.18); }
-.star.current { color: rgba(31, 43, 62, 0.35); }
+.star { color: rgba(233, 237, 247, 0.14); }
+.star.earned { color: var(--gold); text-shadow: 0 0 14px rgba(245, 200, 87, 0.55); }
+.star.current { color: rgba(233, 237, 247, 0.35); }
 
 .challenge-hint {
   font-size: 16.5px;
@@ -205,8 +216,8 @@
   gap: 16px;
   text-align: center;
   padding: 24px;
-  background: rgba(255, 253, 246, 0.93);
-  border-radius: 16px;
+  background: rgba(11, 13, 21, 0.88);
+  border-radius: 14px;
 }
 
 .win-text {
@@ -225,14 +236,17 @@
 .popup {
   position: absolute;
   z-index: 50;
-  background: var(--paper-2);
-  border: 2.5px solid var(--ink);
-  border-radius: 14px;
+  background: #151a2b;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 6px 7px 0 rgba(31, 43, 62, 0.18);
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.6);
   font-size: 15px;
   line-height: 1.55;
+  color: var(--ink-soft);
 }
+
+.popup strong { color: var(--ink); }
 
 .popup p { margin-bottom: 8px; }
 

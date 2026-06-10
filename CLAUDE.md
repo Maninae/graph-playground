@@ -44,10 +44,12 @@ No circular imports.
 ## Load-bearing conventions
 
 - **Knob colors are pedagogy, not decoration.** Green = k (up/down),
-  blue = h (sideways), orange = a (stretch/flip), red = the player's curve.
-  They match across sliders, equation chips, arrows, and prose. Don't
-  reassign them. CSS custom property `--c` carries the color into each
-  `.ctrl-row` / `.echip`.
+  blue = h (sideways), yellow = a (stretch/flip; the CSS var is still named
+  `--orange`), red = the player's curve. They match across sliders, equation
+  chips, arrows, and prose. Don't reassign them. CSS custom property `--c`
+  carries the color into each `.ctrl-row` / `.echip`. The look is
+  3blue1brown-style: near-black blue page with fixed full-page gridlines,
+  manim-bright glowing curves, STIX Two Text for headings/equations.
 - **Equal-aspect axes.** `GraphCanvas` derives the y-range from the x-span
   and aspect ratio so 1 unit is the same length on both axes — slopes and
   shapes look true. Don't add independent y-scaling.
@@ -68,9 +70,10 @@ No circular imports.
   function, should roughly fit y ∈ [−6, 6] for x ∈ [−7, 7]), `expr`
   (equation body around the `(x − h)` chip markup), `label`. The playground
   picker and `eqGeneric` pick it up automatically.
-- **Add a boss round**: append to `LEVELS` in `challenge.js`. Targets must
-  land exactly on slider steps (`a`: 0.25, `h`/`k`: 0.5) or the round is
-  unwinnable — match tolerance is 0.01.
+- **Add a boss round**: append to `LEVELS` in `challenge.js`. Sliders are
+  near-continuous (step 0.05), so winning is tolerance-based (`TOL`:
+  a ±0.1, h/k ±0.15) and the curve snaps to the exact target on a win.
+  Keep targets well inside slider ranges.
 - **Add a section**: copy a `.step` block in `index.html`, mount a widget
   via `buildWidget` in `main.js`. Set the section's `--c` accent.
 - **Add a popup**: `<button class="term" data-pop="foo">` + a

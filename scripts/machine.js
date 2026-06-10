@@ -18,7 +18,7 @@ export function buildMachine(mount) {
       <div class="controls">
         <div class="ctrl-row" style="--c:${C.blue}">
           <label class="ctrl-label" for="machine-x">input x</label>
-          <input type="range" id="machine-x" min="-8" max="8" step="0.25" value="3">
+          <input type="range" id="machine-x" min="-8" max="8" step="0.05" value="3">
           <output class="ctrl-value">3</output>
         </div>
         <div class="ctrl-row ctrl-actions">
@@ -39,7 +39,7 @@ export function buildMachine(mount) {
   let sweep = null;
 
   function remember(x) {
-    state.trail.set(Math.round(x * 4) / 4, true);
+    state.trail.set(Math.round(x * 5) / 5, true);
   }
 
   function render() {
@@ -53,7 +53,7 @@ export function buildMachine(mount) {
     graph.point(x, y, { color: C.red, r: 7 });
     graph.label(`(${fmt(x)}, ${fmt(y)})`, x, y, { dy: -16, bg: true, color: C.ink });
     eqEl.innerHTML =
-      `y&nbsp;=&nbsp;<span class="frac"><span class="num"><span class="echip" style="--c:${C.blue}">${fmt(x)}</span></span><span class="den">2</span></span>` +
+      `<var>y</var>&nbsp;=&nbsp;<span class="frac"><span class="num"><span class="echip" style="--c:${C.blue}">${fmt(x)}</span></span><span class="den">2</span></span>` +
       `&nbsp;+&nbsp;1&nbsp;=&nbsp;<span class="echip" style="--c:${C.green}">${fmt(y)}</span>`;
     valueEl.textContent = fmt(x);
   }

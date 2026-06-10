@@ -1,26 +1,27 @@
 /* Design tokens, reset, page background, typography, callouts.
-   Aesthetic: an elevated lab notebook — warm paper, faint graph-paper
-   grid, navy ink, editorial serif display. Knob colors are load-bearing:
-   green = up/down (k), blue = sideways (h), orange = stretch/flip (a). */
+   Aesthetic: 3blue1brown-style holographic chalkboard — near-black blue,
+   full-page fixed gridlines, nebula glows, manim-bright curve colors,
+   math serif for equations. Knob colors are load-bearing:
+   green = up/down (k), blue = sideways (h), yellow = stretch/flip (a). */
 
 :root {
-  --paper: #f7f3e9;
-  --paper-2: #fffdf8;
-  --ink: #1f2b3e;
-  --ink-soft: rgba(31, 43, 62, 0.68);
-  --ink-faint: rgba(31, 43, 62, 0.42);
-  --rule: rgba(31, 43, 62, 0.14);
-  --green: #1a9159;
-  --blue: #2a5cd7;
-  --orange: #dd7e07;
-  --pink: #e84c7d;
-  --red: #d63c2e;
-  --gold: #e8a90c;
-  --display: 'Fraunces', Georgia, serif;
+  --paper: #0b0d15;        /* page background */
+  --paper-2: #121624;      /* elevated panels */
+  --ink: #e9edf7;
+  --ink-soft: rgba(233, 237, 247, 0.62);
+  --ink-faint: rgba(233, 237, 247, 0.38);
+  --rule: rgba(132, 160, 220, 0.18);
+  --green: #7bd389;
+  --blue: #58c4dd;
+  --orange: #f5c857;
+  --pink: #e07a9e;
+  --red: #fc6255;
+  --gold: #f5c857;
+  --display: 'STIX Two Text', Georgia, serif;
   --body: 'Atkinson Hyperlegible', sans-serif;
   --mono: 'IBM Plex Mono', monospace;
   --radius: 10px;
-  --card-shadow: 4px 5px 0 rgba(31, 43, 62, 0.1);
+  --card-shadow: 0 0 0 1px rgba(132, 160, 220, 0.13), 0 14px 50px rgba(0, 0, 0, 0.5);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,9 +35,13 @@ body {
   color: var(--ink);
   background-color: var(--paper);
   background-image:
-    linear-gradient(rgba(31, 43, 62, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31, 43, 62, 0.045) 1px, transparent 1px);
-  background-size: 26px 26px;
+    radial-gradient(1100px 700px at 85% -120px, rgba(88, 196, 221, 0.09), transparent 65%),
+    radial-gradient(1000px 800px at 8% 35%, rgba(140, 100, 230, 0.07), transparent 65%),
+    radial-gradient(900px 700px at 90% 85%, rgba(252, 98, 85, 0.05), transparent 65%),
+    linear-gradient(rgba(132, 170, 235, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(132, 170, 235, 0.065) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
@@ -50,7 +55,7 @@ p { margin: 0; }
 
 a { color: var(--blue); }
 
-::selection { background: rgba(242, 138, 13, 0.3); }
+::selection { background: rgba(88, 196, 221, 0.3); }
 
 .eyebrow {
   font: 600 12.5px var(--mono);
@@ -63,6 +68,8 @@ a { color: var(--blue); }
   font-size: 18.5px;
   color: var(--ink-soft);
 }
+
+.lede strong { color: var(--ink); }
 
 .c-green { color: var(--green); }
 .c-blue { color: var(--blue); }
@@ -77,21 +84,24 @@ a { color: var(--blue); }
   font: inherit;
   font-weight: 700;
   color: var(--blue);
-  border-bottom: 2.5px dotted var(--blue);
+  border-bottom: 2px dotted var(--blue);
   cursor: help;
   padding: 0;
 }
 
 /* Callouts */
 .callout {
-  background: var(--paper-2);
-  border: 2.5px solid var(--rule);
+  background: rgba(132, 160, 220, 0.06);
+  border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 18px 22px;
   margin: 28px auto 0;
   max-width: 720px;
   font-size: 16.5px;
+  color: var(--ink-soft);
 }
+
+.callout strong, .callout em { color: var(--ink); }
 
 .callout-label {
   font: 700 11px var(--mono);
@@ -102,26 +112,25 @@ a { color: var(--blue); }
 }
 
 .callout.insight {
-  border-color: rgba(31, 168, 98, 0.55);
-  background: #edf8f1;
+  border-color: rgba(123, 211, 137, 0.35);
+  background: rgba(123, 211, 137, 0.07);
 }
 .callout.insight .callout-label { color: var(--green); }
 
 .callout.gotcha {
-  background: #fcf2d9;
+  background: rgba(245, 200, 87, 0.08);
   border: none;
-  border-left: 4px solid var(--orange);
+  border-left: 3px solid var(--orange);
   border-radius: 6px;
 }
 .callout.gotcha .callout-label { color: var(--orange); }
 
 .callout.note {
   font-size: 15.5px;
-  color: var(--ink-soft);
 }
 .callout.note .callout-label { color: var(--ink-faint); }
 
-/* Stacked fractions, usable in prose and in the mono equation displays */
+/* Stacked fractions, usable in prose and in the equation displays */
 .frac {
   display: inline-flex;
   flex-direction: column;
@@ -131,4 +140,4 @@ a { color: var(--blue); }
   margin: 0 2px;
 }
 .frac .num, .frac .den { font-size: 0.78em; padding: 0 4px; }
-.frac .den { border-top: 1.8px solid currentColor; }
+.frac .den { border-top: 1.5px solid currentColor; }

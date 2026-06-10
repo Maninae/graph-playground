@@ -21,11 +21,11 @@ export function signedChip(v, color) {
 // The "x − h" inside the parentheses. The sign flip lives here:
 // h = 3 renders "x − 3", h = −2 renders "x + 2".
 export function innerX(h) {
-  return `x&hairsp;${chip(`${h < 0 ? '+' : '−'}&hairsp;${fmt(Math.abs(h))}`, C.blue)}`;
+  return `<var>x</var>&hairsp;${chip(`${h < 0 ? '+' : '−'}&hairsp;${fmt(Math.abs(h))}`, C.blue)}`;
 }
 
 // Full y = a·f(x − h) + k for any shape in the library.
 export function eqGeneric(shapeKey, { a, h, k }) {
   const body = SHAPES[shapeKey].expr(innerX(h));
-  return `y = ${chip(fmt(a), C.orange)}&hairsp;·&hairsp;${body} ${signedChip(k, C.green)}`;
+  return `<var>y</var> = ${chip(fmt(a), C.orange)}&hairsp;·&hairsp;${body} ${signedChip(k, C.green)}`;
 }

@@ -7,10 +7,14 @@ import { eqGeneric } from './equation.js';
 import { confettiBurst } from './util.js';
 
 const KNOBS = {
-  a: { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.25, init: 1 },
-  h: { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.5, init: 0 },
-  k: { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.5, init: 0 },
+  a: { key: 'a', label: 'a — stretch / flip', color: C.orange, min: -3, max: 3, step: 0.05, init: 1 },
+  h: { key: 'h', label: 'h — shift sideways', color: C.blue, min: -6, max: 6, step: 0.05, init: 0 },
+  k: { key: 'k', label: 'k — shift up / down', color: C.green, min: -5, max: 5, step: 0.05, init: 0 },
 };
+
+// Sliders are continuous, so winning is tolerance-based; on a win the
+// curve snaps to the exact target.
+const TOL = { a: 0.1, h: 0.15, k: 0.15 };
 
 const LEVELS = [
   { shape: 'line', controls: ['k'], fixed: { a: 0.5, h: 0 }, target: { k: 3 },
@@ -50,7 +54,7 @@ export function buildChallenge(mount) {
   }
 
   function matched(params, level) {
-    return level.controls.every(key => Math.abs(params[key] - level.target[key]) < 0.01);
+    return level.controls.every(key => Math.abs(params[key] - level.target[key]) <= TOL[key]);
   }
 
   function loadLevel() {
@@ -60,7 +64,8 @@ export function buildChallenge(mount) {
     hintEl.textContent = `Round ${state.level + 1} of ${LEVELS.length} — ${level.hint}`;
     drawStars();
     const full = ps => ({ ...level.fixed, ...ps });
-    buildWidget(widgetMount, {
+    let widget = null;
+    widget = buildWidget(widgetMount, {
       id: `boss${state.level}`,
       graph: { xspan: 18 },
       params: level.controls.map(key => KNOBS[key]),
@@ -75,7 +80,13 @@ export function buildChallenge(mount) {
       onChange: ps => {
         if (state.won || !matched(ps, level)) return;
         state.won = true;
-        setTimeout(() => win(), 350);
+        setTimeout(() => {
+          if (widget) {
+            for (const key of level.controls) widget.setParam(key, level.target[key]);
+            widget.render();
+          }
+          win();
+        }, 350);
       },
     });
   }

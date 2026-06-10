@@ -1,13 +1,17 @@
 // Shared constants: palette (mirrors CSS custom properties) and the shape library.
 
+// Manim-inspired palette on near-black. "ink" is the default pen color
+// (light, since the page is dark); "bg" is the page/panel base used for
+// point rings and label plates on canvas.
 export const C = {
-  ink: '#1f2b3e',
-  inkSoft: 'rgba(31,43,62,0.6)',
-  green: '#1fa862',   // k — slide up/down
-  blue: '#2e66e5',    // h — slide left/right
-  orange: '#f08a12',  // a — stretch/squish/flip
-  pink: '#e84c7d',
-  red: '#e8443a',     // brand / multi-knob curves
+  ink: '#e9edf7',
+  inkSoft: 'rgba(233,237,247,0.62)',
+  bg: '#0b0d15',
+  green: '#7bd389',   // k — shift up/down
+  blue: '#58c4dd',    // h — shift left/right
+  orange: '#f5c857',  // a — stretch/flip
+  pink: '#e07a9e',
+  red: '#fc6255',     // player's curve / brand
 };
 
 // Base shapes for the playground and boss level.

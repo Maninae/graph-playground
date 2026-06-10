@@ -54,19 +54,19 @@ export class GraphCanvas {
     const { ctx } = this;
     ctx.clearRect(0, 0, this.w, this.h);
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(31,43,62,0.07)';
+    ctx.strokeStyle = 'rgba(132,170,235,0.10)';
     for (let x = Math.ceil(this.xmin); x <= Math.floor(this.xmax); x++) {
       ctx.beginPath(); ctx.moveTo(this.px(x), 0); ctx.lineTo(this.px(x), this.h); ctx.stroke();
     }
     for (let y = Math.ceil(this.ymin); y <= Math.floor(this.ymax); y++) {
       ctx.beginPath(); ctx.moveTo(0, this.py(y)); ctx.lineTo(this.w, this.py(y)); ctx.stroke();
     }
-    ctx.strokeStyle = 'rgba(31,43,62,0.45)';
+    ctx.strokeStyle = 'rgba(190,210,250,0.45)';
     ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.moveTo(0, this.py(0)); ctx.lineTo(this.w, this.py(0)); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(this.px(0), 0); ctx.lineTo(this.px(0), this.h); ctx.stroke();
     if (!numbers) return;
-    ctx.fillStyle = 'rgba(31,43,62,0.45)';
+    ctx.fillStyle = 'rgba(190,210,250,0.4)';
     ctx.font = '11px "IBM Plex Mono", monospace';
     ctx.textAlign = 'center';
     for (let x = Math.ceil(this.xmin / 2) * 2; x <= this.xmax; x += 2) {
@@ -93,7 +93,7 @@ export class GraphCanvas {
     ctx.lineWidth = width;
     ctx.lineJoin = ctx.lineCap = 'round';
     if (dash) ctx.setLineDash(dash);
-    if (glow) { ctx.shadowColor = color; ctx.shadowBlur = 9; }
+    if (glow) { ctx.shadowColor = color; ctx.shadowBlur = 14; }
     ctx.beginPath();
     const n = 400;
     let started = false;
@@ -119,7 +119,7 @@ export class GraphCanvas {
     ctx.fillStyle = color;
     ctx.fill();
     ctx.lineWidth = 2;
-    ctx.strokeStyle = '#fffdf6';
+    ctx.strokeStyle = C.bg;
     ctx.stroke();
     ctx.restore();
   }
@@ -172,7 +172,7 @@ export class GraphCanvas {
     ctx.textAlign = align;
     if (bg) {
       const w = ctx.measureText(text).width + 12;
-      ctx.fillStyle = 'rgba(255,253,246,0.9)';
+      ctx.fillStyle = 'rgba(11,13,21,0.85)';
       const bx = align === 'center' ? px - w / 2 : align === 'left' ? px - 6 : px - w + 6;
       ctx.beginPath();
       ctx.roundRect(bx, py - 12, w, 18, 6);
