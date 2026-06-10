@@ -23,5 +23,5 @@ export const SHAPES = {
   cubic: { label: 'Cubic',          f: x => (x * x * x) / 12,
            expr: i => `<span class="frac"><span class="num">(${i})³</span><span class="den">12</span></span>` },
   abs:   { label: 'Absolute value', f: x => Math.abs(x),              expr: i => `|${i}|` },
-  wave:  { label: 'Wave',           f: x => 2.5 * Math.sin(1.25 * x), expr: i => `wave(${i})` },
+  sine:  { label: 'Sine',           f: x => 2.5 * Math.sin(1.25 * x), expr: i => `sin(${i})` },
 };

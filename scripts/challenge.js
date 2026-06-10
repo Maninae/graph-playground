@@ -27,7 +27,7 @@ const LEVELS = [
     hint: 'Stretch or compress first, then translate.' },
   { shape: 'quad', controls: ['a', 'h'], fixed: { k: 1 }, target: { a: -1, h: 2 },
     hint: 'One of these knobs needs to go negative.' },
-  { shape: 'wave', controls: ['a', 'h', 'k'], fixed: {}, target: { a: 2, h: 3, k: -1 },
+  { shape: 'sine', controls: ['a', 'h', 'k'], fixed: {}, target: { a: 2, h: 3, k: -1 },
     hint: 'Final round: all three. Sideways first, then height, then stretch.' },
 ];
 
